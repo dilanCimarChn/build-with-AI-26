@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huayna Potosí 6,088m | Alpinismo de Altura en Bolivia</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Paleta de Colores - Inspirada en la alta montaña, hielo glaciar y roca andina */
+      --primary: #0f1c2e;       /* Azul abismo nocturno */
+      --accent: #00d2ff;        /* Azul hielo glaciar */
+      --accent-rgb: 0, 210, 255;
+      --text-light: #f3f4f6;    /* Blanco nieve */
+      --text-muted: #9ca3af;    /* Gris granito */
+      --bg-dark: #070b12;       /* Negro absoluto de altura */
+      --bg-card: #111827;       /* Gris carbón */
+      --border-color: #1f2937;  /* Borde sutil */
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Reset & Base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: auto; /* Controlado por JS */
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      font-weight: 300;
+    }
+
+    /* Reusable Components */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg-dark);
+      border: 1px solid var(--accent);
+      box-shadow: 0 4px 20px rgba(0, 210, 255, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+      box-shadow: 0 4px 30px rgba(0, 210, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-light);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--text-light);
+      transform: translateY(-2px);
+    }
+
+    /* Section Styling */
+    section {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Reveal Animation on Scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: var(--transition);
+      border-bottom: 1px solid transparent;
+    }
+
+    .navbar.scrolled {
+      background: rgba(7, 11, 18, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.8rem 0;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--text-light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      color: var(--text-light);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-cta .btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.75rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: linear-gradient(to bottom, rgba(7,11,18,0.4) 0%, rgba(7,11,18,0.95) 100%), 
+                        url('https://image.pollinations.ai/prompt/majestic%20snow%20capped%20summit%20of%20huayna%20potosi%20mountain%20in%20bolivia%20during%20sunrise%20cinematic%20lighting%20epic%20scale?width=1600&height=900&nologo=true');
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 800px;
+    }
+
+    .hero-altitude {
+      font-family: 'Cinzel', serif;
+      color: var(--accent);
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+      display: block;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      margin-bottom: 3rem;
+      max-width: 650px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    /* Alternating Content Sections */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .split-image-container {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .split-image-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 60%, var(--bg-dark) 100%);
+    }
+
+    .split-img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .split-image-container:hover .split-img {
+      transform: scale(1.05);
+    }
+
+    .split-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Grid de Rutas */
+    .routes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .route-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2.5rem;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .route-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
+    }
+
+    .route-num {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: bold;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .route-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .route-desc {
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .route-specs {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .spec-item {
+      font-size: 0.85rem;
+    }
+
+    .spec-label {
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .spec-value {
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    /* Hospedajes / Camps */
+    .camp-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .camp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .camp-card:hover {
+      border-color: rgba(0, 210, 255, 0.3);
+    }
+
+    .camp-img-wrapper {
+      position: relative;
+      height: 250px;
+    }
+
+    .camp-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .camp-altitude {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(7, 11, 18, 0.85);
+      border: 1px solid var(--accent);
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .camp-body {
+      padding: 2.5rem;
+    }
+
+    .camp-title {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .camp-desc {
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .price-list {
+      margin-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px dashed var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .price-row:last-child {
+      border-bottom: none;
+    }
+
+    .price-label {
+      color: var(--text-muted);
+    }
+
+    .price-val {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Safety & Emergency Contacts */
+    .safety-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 4rem;
+    }
+
+    .safety-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .safety-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+
+    .safety-card svg {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .safety-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .safety-card p {
+      font-size: 0.9rem;
+    }
+
+    .emergency-panel {
+      background: linear-gradient(135deg, #1e0f0f 0%, #070b12 100%);
+      border: 1px solid #ff4a4a;
+      border-radius: 8px;
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .emergency-badge {
+      display: inline-block;
+      background: #ff4a4a;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.75rem;
+      font-weight: bold;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+
+    .emergency-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .emergency-numbers {
+      margin-top: 1.5rem;
+    }
+
+    .emergency-num {
+      font-family: monospace;
+      font-size: 1.1rem;
+      color: #ff4a4a;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Gear Rental section */
+    .gear-table-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .gear-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .gear-table th, .gear-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .gear-table th {
+      color: var(--text-light);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+
+    .gear-table td {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .gear-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .gear-table tr:hover td {
+      color: var(--text-light);
+      background: rgba(255,255,255,0.01);
+    }
+
+    /* CTA Section (Final) */
+    .cta-final {
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      background-image: linear-gradient(to top, rgba(7,11,18,0.98) 0%, rgba(15,28,46,0.85) 100%), 
+                        url('https://image.pollinations.ai/prompt/alpinist%20reaching%20the%20summit%20of%20a%20snowy%20peak%20raising%20arms%20freedom%20epic%20landscape?width=1600&height=900&nologo=true');
+      padding: 10rem 0;
+    }
+
+    .cta-final h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-final p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 3rem auto;
+    }
+
+    /* Footer */
+    footer {
+      background: #04060b;
+      padding: 4rem 0;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .split-section {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .camp-tabs {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .safety-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; /* Simplificado para landing móvil */
+      }
+      .hero-buttons {
+        flex-direction: column;
+      }
+      .safety-cards {
+        grid-template-columns: 1fr;
+      }
+      .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">HUAYNA<span>POTOSI</span></a>
+      <ul class="nav-links">
+        <li><a href="#experiencia" class="nav-link">Experiencia</a></li>
+        <li><a href="#rutas" class="nav-link">Rutas</a></li>
+        <li><a href="#campos" class="nav-link">Campamentos</a></li>
+        <li><a href="#seguridad" class="nav-link">Seguridad</a></li>
+        <li><a href="#equipo" class="nav-link">Equipo</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#contacto" class="btn btn-primary">Reservar</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-altitude">6,088 M.S.N.M. | BOLIVIA</span>
+        <h1 class="hero-title">La cumbre de seis mil metros más accesible del mundo</h1>
+        <p class="hero-desc">Ubicado en la majestuosa Cordillera Real de los Andes, a solo 25 km de La Paz, ofrece una experiencia única de alta montaña tanto para principiantes como para expertos.</p>
+        <div class="hero-buttons">
+          <a href="#rutas" class="btn btn-primary">Explorar Rutas</a>
+          <a href="#experiencia" class="btn btn-secondary">Saber Más</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Experiencia (Split) -->
+  <section id="experiencia">
+    <div class="container">
+      <div class="split-section reveal">
+        <div class="split-content">
+          <span class="section-tag">Presentación</span>
+          <h2 class="section-title">Alpinismo Andino Real</h2>
+          <p>Con su imponente cumbre helada, el Huayna Potosí es el nevado más icónico de Bolivia. Es el destino ideal para quienes desean conquistar su primer "seismil" sin necesidad de una expedición de semanas.</p>
+          <p>La recompensa en la cima es inigualable: una vista panorámica de 360 grados que abarca el Altiplano boliviano, las profundidades del Lago Titicaca y la silueta infinita de la Cordillera Real.</p>
+          <a href="#campos" class="btn btn-secondary" style="margin-top: 1rem;">Ver Logística</a>
+        </div>
+        <div class="split-image-container">
+          <img src="https://image.pollinations.ai/prompt/mountaineer%20climbing%20glacier%20on%20huayna%20potosi%20with%20crampons%20and%20ice%20axe%20sunrise%20bolivia?width=1600&height=900&nologo=true" alt="Alpinista en el glaciar de Huayna Potosí" class="split-img" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Rutas -->
+  <section id="rutas" style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">El Desafío</span>
+        <h2 class="section-title">Elige Tu Ruta de Ascenso</h2>
+        <p style="max-width: 600px; margin: 0 auto;">Desde la ruta clásica hasta desafíos verticales para profesionales. La mayoría de los ascensos se realizan en un itinerario de 2 días.</p>
+      </div>
+
+      <div class="routes-grid reveal">
+        <!-- Ruta 1 -->
+        <div class="route-card">
+          <div>
+            <span class="route-num">01 / CLÁSICA</span>
+            <h3 class="route-title">Ruta Normal</h3>
+            <p class="route-desc">La opción predilecta. Ideal para iniciarse en la alta montaña con guías certificados sobre terreno glaciar constante.</p>
+          </div>
+          <div class="route-specs">
+            <div class="spec-item">
+              <span class="spec-label">Dificultad</span>
+              <span class="spec-value">AD (Moderada)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Tiempo</span>
+              <span class="spec-value">5 - 8 horas</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Desnivel</span>
+              <span class="spec-value">+960 m</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Pendientes</span>
+              <span class="spec-value">45° - 60°</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ruta 2 -->
+        <div class="route-card">
+          <div>
+            <span class="route-num">02 / TÉCNICA</span>
+            <h3 class="route-title">Cara Este</h3>
+            <p class="route-desc">Variante directa que exige una excelente técnica de escalada en hielo vertical y gran resistencia física.</p>
+          </div>
+          <div class="route-specs">
+            <div class="spec-item">
+              <span class="spec-label">Dificultad</span>
+              <span class="spec-value">D (Difícil)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Tiempo</span>
+              <span class="spec-value">6 - 10 horas</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Desnivel</span>
+              <span class="spec-value">+1,380 m</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Paredes</span>
+              <span class="spec-value">Hasta 70°</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ruta 3 -->
+        <div class="route-card">
+          <div>
+            <span class="route-num">03 / EXTREMA</span>
+            <h3 class="route-title">Ascenso Express</h3>
+            <p class="route-desc">Diseñado exclusivamente para atletas altamente aclimatados. Ataque directo sin pernoctar en campo alto.</p>
+          </div>
+          <div class="route-specs">
+            <div class="spec-item">
+              <span class="spec-label">Dificultad</span>
+              <span class="spec-value">AD+ (Exigente)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Tiempo</span>
+              <span class="spec-value">10 - 14 horas</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Inicio</span>
+              <span class="spec-value">Base (4,700m)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Condición</span>
+              <span class="spec-value">Aclimatación total</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Hospedajes y Campos -->
+  <section id="campos">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Logística</span>
+        <h2 class="section-title">Refugios y Campos Base</h2>
+        <p style="max-width: 600px; margin: 0 auto;">Puntos estratégicos de descanso y aclimatación diseñados para optimizar tu ascenso.</p>
+      </div>
+
+      <div class="camp-tabs reveal">
+        <!-- Campo Base Bolívar -->
+        <div class="camp-card">
+          <div class="camp-img-wrapper">
+            <img src="https://image.pollinations.ai/prompt/bolivar%20mountain%20refuge%20at%204700m%20huayna%20potosi%20andes%20bolivia%20sunset?width=800&height=500&nologo=true" alt="Refugio Campo Base Bolívar" class="camp-img" loading="lazy">
+            <span class="camp-altitude">4,700 m.s.n.m.</span>
+          </div>
+          <div class="camp-body">
+            <h3 class="camp-title">Campo Base Bolívar</h3>
+            <p class="camp-desc">Acceso directo en vehículo desde La Paz. Cuenta con dormitorios compartidos, área de comedor y cocina. El punto ideal para iniciar el trekking hacia el glaciar.</p>
+            <div class="price-list">
+              <div class="price-row">
+                <span class="price-label">Dormitorio compartido</span>
+                <span class="price-val">Bs. 80 - 120</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Pensión completa</span>
+                <span class="price-val">Bs. 200 - 280</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Espacio para carpa propia</span>
+                <span class="price-val">Bs. 30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campo Base Alto -->
+        <div class="camp-card">
+          <div class="camp-img-wrapper">
+            <img src="https://image.pollinations.ai/prompt/high%20camp%20mountain%20hut%20at%205130m%20clinging%20to%20rocky%20ridge%20huayna%20potosi%20snowy?width=800&height=500&nologo=true" alt="Refugio Campo Base Alto" class="camp-img" loading="lazy">
+            <span class="camp-altitude">5,130 m.s.n.m.</span>
+          </div>
+          <div class="camp-body">
+            <h3 class="camp-title">Campo Base Alto</h3>
+            <p class="camp-desc">Refugio de montaña básico sobre la arista de roca. Dormir aquí es crucial para consolidar la aclimatación antes de iniciar el asalto final a la cumbre a medianoche.</p>
+            <div class="price-list">
+              <div class="price-row">
+                <span class="price-label">Litera en refugio</span>
+                <span class="price-val">Bs. 60 - 100</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Carpa de operadora</span>
+                <span class="price-val">Incluido en Pack</span>
+              </div>
+              <div class="price-row">
+                <span class="price-label">Servicios</span>
+                <span class="price-val">Equipo de Emergencia</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Seguridad -->
+  <section id="seguridad" style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Montaña Segura</span>
+        <h2 class="section-title">Tu Vida es Prioridad</h2>
+        <p style="max-width: 600px; margin: 0 auto;">El Huayna Potosí es una actividad de alto riesgo. La preparación y la seguridad previenen accidentes.</p>
+      </div>
+
+      <div class="safety-grid reveal">
+        <div class="safety-cards">
+          <div class="safety-card">
+            <!-- Icono Escudo/Guía -->
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h3>Guías UIAGM</h3>
+            <p>Contrata siempre guías con credencial internacional UIAGM. Expertos en rescate andino y gestión de riesgos en glaciares.</p>
+          </div>
+          <div class="safety-card">
+            <!-- Icono Reloj/Aclimatación -->
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <h3>Aclimatación Obligatoria</h3>
+            <p>Pasa al menos 3 o 4 días previos en La Paz (3,640m) o Peñas antes de intentar ascender para evitar el mal de altura severo.</p>
+          </div>
+          <div class="safety-card">
+            <!-- Icono Radio/Comunicación -->
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9M19.1 4.9c3.9 3.9 3.9 10.3 0 14.2M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5M12 12h.01"/></svg>
+            <h3>Comunicaciones</h3>
+            <p>La cobertura celular es casi nula en el glaciar. ENTEL es el único operador con señal intermitente en áreas específicas.</p>
+          </div>
+          <div class="safety-card">
+            <!-- Icono Alerta -->
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <h3>Plan de Emergencia</h3>
+            <p>Comunica siempre tu ruta y hora estimada de retorno en tu hospedaje antes de salir. El Socorro Andino asiste rescates.</p>
+          </div>
+        </div>
+
+        <div class="emergency-panel">
+          <span class="emergency-badge">S.O.S. Socorro Andino</span>
+          <h3 class="emergency-title">Contactos de Rescate</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: #ffbcbc;">En caso de incidentes en el glaciar, el Socorro Andino de Bolivia (SAB) es la red de rescate técnico de montaña oficial.</p>
+          
+          <div class="emergency-numbers">
+            <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">Líneas de Emergencia</span>
+            <span class="emergency-num">72061471</span>
+            <span class="emergency-num">72514357</span>
+            <span class="emergency-num">73542550</span>
+            <span class="emergency-num">Policía: 110 | Bomberos: 119</span>
+          </div>
+
+          <div style="margin-top: 1.5rem; border-top: 1px solid rgba(255, 74, 74, 0.3); padding-top: 1rem;">
+            <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Frecuencias de Radio</span>
+            <span style="font-family: monospace; color: var(--text-light);">UHF: 458.150 MHz<br>VHF: 161.300 MHz</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Equipo & Clima -->
+  <section id="equipo">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Preparación</span>
+        <h2 class="section-title">Equipo Técnico & Clima</h2>
+        <p style="max-width: 600px; margin: 0 auto;">No necesitas comprar equipo costoso, puedes alquilar lo necesario en La Paz o Peñas antes de tu ascenso.</p>
+      </div>
+
+      <div class="reveal" style="margin-bottom: 5rem;">
+        <div class="gear-table-container">
+          <table class="gear-table">
+            <thead>
+              <tr>
+                <th>Equipo Técnico</th>
+                <th style="text-align: right;">Costo Aprox. / Día</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Botas Dobles de Alta Montaña</td>
+                <td style="text-align: right; color: var(--accent);">Bs. 80 – 120</td>
+              </tr>
+              <tr>
+                <td>Crampones de Acero</td>
+                <td style="text-align: right; color: var(--accent);">Bs. 50 – 80</td>
+              </tr>
+              <tr>
+                <td>Piolet Clásico</td>
+                <td style="text-align: right; color: var(--accent);">Bs. 40 – 70</td>
+              </tr>
+              <tr>
+                <td>Sleeping Bag Térmico (-20°C)</td>
+                <td style="text-align: right; color: var(--accent);">Bs. 60 – 100</td>
+              </tr>
+              <tr>
+                <td>Arnés & Casco de Escalada</td>
+                <td style="text-align: right; color: var(--accent);">Bs. 55 – 90</td>
+              </tr>
+              <tr>
+                <td>Ropa Térmica Completa</td>
+                <td style="text-align: right; color: var(--accent);">Bs. 100 – 150</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+            Contacto de Alquiler: <strong>La Cordillera Experience</strong> | +591 74018297
+          </div>
+        </div>
+      </div>
+
+      <!-- Temporadas -->
+      <div class="split-section reveal" style="background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 3rem; border-radius: 8px;">
+        <div>
+          <span class="section-tag" style="color: #4ade80;">Mayo – Agosto</span>
+          <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Temporada Alta (Seca)</h3>
+          <p>La mejor época para el ascenso. Cielos completamente despejados y condiciones estables del glaciar. Las temperaturas son extremadamente frías (-10°C a -25°C en cumbre), pero el riesgo meteorológico es mínimo.</p>
+        </div>
+        <div>
+          <span class="section-tag" style="color: #f87171;">Septiembre – Abril</span>
+          <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Temporada Baja (Lluvias)</h3>
+          <p>Alta inestabilidad climática. Es posible intentar la ascensión con precauciones extremas en otoño, pero entre diciembre y marzo las tormentas eléctricas y nevadas continuas hacen el glaciar sumamente peligroso.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section id="contacto" class="cta-final">
+    <div class="container">
+      <h2 class="reveal">¿Listo para tocar el cielo andino?</h2>
+      <p class="reveal">El Huayna Potosí te espera. Planifica tu expedición con guías certificados y vive la experiencia más increíble de los Andes.</p>
+      <div class="reveal">
+        <a href="https://wa.me/59174018297" target="_blank" class="btn btn-primary" style="font-size: 1rem; padding: 1.2rem 3rem;">Iniciar Expedición</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div>
+        <h3 style="font-family: 'Cinzel', serif; color: var(--text-light); margin-bottom: 0.5rem;">HUAYNA POTOSÍ</h3>
+        <p style="font-size: 0.8rem;">La cumbre de 6,000 metros más accesible del mundo.</p>
+      </div>
+      <div style="display: flex; gap: 2rem;">
+        <a href="#experiencia" class="nav-link">Info</a>
+        <a href="#rutas" class="nav-link">Rutas</a>
+        <a href="#seguridad" class="nav-link">Seguridad</a>
+      </div>
+      <div>
+        <p style="font-size: 0.8rem;">© <span id="year"></span> Bolivia Alta Montaña. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dinamic Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth Scroll Navigation (Evita problemas locales de enlaces ancla)
+    document.querySelectorAll('.navbar a[href^="#"], .hero-buttons a[href^="#"], .split-content a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          const navbarHeight = document.getElementById('navbar').offsetHeight;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Reveal elements on scroll (Intersection Observer)
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    revealElements.forEach(element => {
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>
