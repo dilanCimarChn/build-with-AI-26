@@ -1,90 +1,213 @@
 <div class="page">
-  <header class="hero">
-    <h1>PDF2Landing</h1>
-    <p class="tagline">
-      Convierte tu folleto PDF en una <strong>landing page profesional</strong> en segundos.
-    </p>
-    <p class="subtagline">
-      Sube el PDF que ya tienes — sin escribir nada — y deja que la IA haga el resto.
-    </p>
+  <!-- Cabecera de navegación -->
+  <header class="main-header">
+    <div class="brand">
+      <span class="brand-dots"><i class="dot-purple"></i><i class="dot-blue"></i></span>
+      <span class="brand-name">DestinAI</span>
+    </div>
+    @if (phase() !== 'idle') {
+      <button class="nav-restart-btn" (click)="startOver()">Subir otro PDF</button>
+    }
   </header>
 
-  <main class="layout">
-    <!-- Columna de entrada -->
-    <section class="col input-col">
-      @if (phase() === 'idle' || phase() === 'error') {
-        <app-dropzone (fileSelected)="onFile($event)" />
-      }
+  @if (phase() === 'idle' || (phase() === 'error' && !markdown())) {
+    <!-- VISTA DE PRESENTACIÓN / LANDING EXPLICATIVA -->
+    <div class="intro-view">
+      <!-- Fondo dinámico con orbes de color -->
+      <div class="bg-decorations">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+      </div>
 
-      @if (busy()) {
-        <div class="card status">
-          <div class="spinner"></div>
-          <div>
-            <p class="status-text">{{ statusText() }}</p>
-            <p class="status-file">{{ fileName() }}</p>
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1>Convierte cualquier PDF en una <span class="gradient-text">Landing Page profesional</span></h1>
+          <p class="hero-tagline">
+            Sube folletos, catálogos, menús o guías. La IA de Gemini estructurará el contenido y creará un sitio web moderno y optimizado para ventas en segundos.
+          </p>
+          <div class="cta-scroll-anchor">
+            <a href="#upload-section" class="scroll-cta-btn">Comenzar ahora</a>
           </div>
         </div>
-      }
+        
+        <div class="hero-visual">
+          <div class="mockup-window">
+            <div class="mockup-header">
+              <span class="mockup-dots"><i></i><i></i><i></i></span>
+              <span class="mockup-url">tu-sitio.com</span>
+            </div>
+            <div class="mockup-body">
+              <div class="mock-hero">
+                <div class="mock-line title-line"></div>
+                <div class="mock-line text-line-1"></div>
+                <div class="mock-line text-line-2"></div>
+                <div class="mock-btn"></div>
+              </div>
+              <div class="mock-grid">
+                <div class="mock-card">
+                  <div class="mock-icon icon-neon"></div>
+                  <div class="mock-line sub-line"></div>
+                  <div class="mock-line min-line"></div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-icon icon-blue"></div>
+                  <div class="mock-line sub-line"></div>
+                  <div class="mock-line min-line"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      @if (phase() === 'error') {
-        <div class="card error-box">⚠️ {{ errorMsg() }}</div>
-      }
+      <!-- SECCIÓN: CÓMO FUNCIONA -->
+      <section class="how-it-works">
+        <h2>¿Cómo funciona?</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Sube tu PDF</h3>
+            <p>Arrastra tu catálogo o folleto. Lo procesamos de forma segura directamente en tu navegador.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Compresión a Markdown</h3>
+            <p>Extraemos el texto y estructura, reduciendo el peso en más del 90% para ahorrar tokens en la IA.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Diseño Instantáneo</h3>
+            <p>Gemini diseña una landing page responsiva con imágenes generadas por IA y la publica en la nube.</p>
+          </div>
+        </div>
+      </section>
 
-      @if (stats(); as s) {
-        <app-stats-panel [stats]="s" />
-      }
+      <!-- SECCIÓN: CARACTERÍSTICAS -->
+      <section class="features-section">
+        <h2>Características clave</h2>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div>
+              <h4>Velocidad y Eficiencia</h4>
+              <p>La pre-conversión a Markdown optimiza los tokens de Gemini, permitiendo generación ultra rápida.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div>
+              <h4>Paletas Coherentes</h4>
+              <p>La IA infiere una combinación de colores que encaja perfectamente con la temática de tu documento.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div>
+              <h4>Imágenes contextuales IA</h4>
+              <p>Se integra con generadores de imágenes por IA para ilustrar tu landing según tu producto.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div>
+              <h4>Publicación automática</h4>
+              <p>Despliegue inmediato y gratuito en GitHub Pages para compartir tu nuevo sitio web con un clic.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      @if (markdown()) {
-        <div class="card md-card">
-          <button class="md-toggle" (click)="showMarkdown.set(!showMarkdown())">
-            {{ showMarkdown() ? '▾' : '▸' }} Markdown extraído
-          </button>
-          @if (showMarkdown()) {
-            <pre class="md-view">{{ markdown() }}</pre>
+      <!-- SECCIÓN: ZONA DE SUBIDA -->
+      <section id="upload-section" class="upload-section">
+        <div class="upload-container">
+          <h2>Comienza a transformar tu PDF</h2>
+          <p class="upload-sub">Arrastra tu archivo PDF aquí abajo para ver la magia.</p>
+          
+          <app-dropzone (fileSelected)="onFile($event)" />
+
+          @if (phase() === 'error') {
+            <div class="card error-box">Error: {{ errorMsg() }}</div>
           }
         </div>
-      }
-    </section>
-
-    <!-- Columna de resultado -->
-    <section class="col result-col">
-      @if (phase() === 'done') {
-        @switch (publishState()) {
-          @case ('publishing') {
-            <div class="card publish publishing">
-              <div class="spinner small"></div>
-              <span>Publicando tu landing en la nube…</span>
+      </section>
+    </div>
+  } @else {
+    <!-- VISTA DE TRABAJO (DASHBOARD) -->
+    <main class="layout">
+      <!-- Columna de control (Izquierda) -->
+      <section class="col input-col">
+        @if (busy()) {
+          <div class="card status">
+            <div class="spinner"></div>
+            <div>
+              <p class="status-text">{{ statusText() }}</p>
+              <p class="status-file">{{ fileName() }}</p>
             </div>
-          }
-          @case ('published') {
-            <div class="card publish published">
-              <span class="pub-label">🚀 ¡En vivo!</span>
-              <a [href]="liveUrl()" target="_blank" rel="noopener" class="pub-link">{{ liveUrl() }}</a>
-              <span class="pub-note">Puede tardar ~1 min en quedar disponible la primera vez.</span>
-            </div>
-          }
-          @case ('failed') {
-            <div class="card publish failed">
-              <span>⚠️ No se pudo publicar: {{ publishMsg() }}</span>
-              <button class="retry" (click)="republish()">Reintentar</button>
-            </div>
-          }
+          </div>
         }
 
-        <app-result-actions [html]="html()" />
-        <app-preview [html]="html()" />
-        <button class="restart" (click)="startOver()">↺ Convertir otro PDF</button>
-      } @else {
-        <div class="card placeholder">
-          <div class="ph-icon">🌐</div>
-          <p>Tu landing page aparecerá aquí.</p>
-          <span>Sube un PDF y míralo cobrar vida — se publica solo en la nube.</span>
-        </div>
-      }
-    </section>
-  </main>
+        @if (phase() === 'error') {
+          <div class="card error-box">Error: {{ errorMsg() }}</div>
+        }
+
+        @if (phase() === 'done') {
+          <!-- Estado de publicación -->
+          @switch (publishState()) {
+            @case ('publishing') {
+              <div class="card publish publishing">
+                <div class="spinner small"></div>
+                <span>Publicando en la nube…</span>
+              </div>
+            }
+            @case ('published') {
+              <div class="card publish published">
+                <span class="pub-label">En vivo:</span>
+                <a [href]="liveUrl()" target="_blank" rel="noopener" class="pub-link">{{ liveUrl() }}</a>
+                <span class="pub-note">Puede tardar ~1 min en quedar disponible.</span>
+              </div>
+            }
+            @case ('failed') {
+              <div class="card publish failed">
+                <span>Error de publicación:</span>
+                <button class="retry" (click)="republish()">Reintentar</button>
+              </div>
+            }
+          }
+
+          <!-- Acciones de descarga/copiado -->
+          <div class="card actions-card">
+            <app-result-actions [html]="html()" />
+          </div>
+        }
+
+        @if (stats(); as s) {
+          <app-stats-panel [stats]="s" />
+        }
+
+        @if (markdown()) {
+          <div class="card md-card">
+            <button class="md-toggle" (click)="showMarkdown.set(!showMarkdown())">
+              {{ showMarkdown() ? '▾' : '▸' }} Markdown extraído
+            </button>
+            @if (showMarkdown()) {
+              <pre class="md-view">{{ markdown() }}</pre>
+            }
+          </div>
+        }
+
+        @if (phase() === 'done') {
+          <!-- Botón de retorno -->
+          <button class="restart" (click)="startOver()">Convertir otro PDF</button>
+        }
+      </section>
+
+      <!-- Columna de resultado (Derecha) -->
+      <section class="col result-col">
+        @if (phase() === 'done') {
+          <app-preview [html]="html()" />
+        }
+      </section>
+    </main>
+  }
 
   <footer class="foot">
-    PDF2Landing · Hackathon GDG La Paz — Build with AI 2026 · hecho con Angular + Gemini
+    DestinAI · Hackathon GDG La Paz — Build with AI 2026 · hecho con Angular + Gemini
   </footer>
 </div>

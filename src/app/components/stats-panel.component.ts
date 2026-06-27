@@ -5,7 +5,7 @@ import { TokenStats } from '../services/models';
   selector: 'app-stats-panel',
   template: `
     <div class="card stats">
-      <h3>⚡ Ahorro de tokens</h3>
+      <h3>Ahorro de tokens</h3>
       <div class="grid">
         <div class="stat raw">
           <span class="label">PDF directo</span>

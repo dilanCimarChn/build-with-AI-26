@@ -1,4 +1,4 @@
-# PDF2Landing 🌐
+# DestinAI 🌐
 
 Convierte un **PDF** (folleto, guía turística, catálogo) en una **landing page
 profesional** lista para descargar — sin escribir nada. Solo arrastras el PDF.
