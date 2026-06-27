@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PEÑAS - Cordillera Real, Bolivia | Destino de Escalada y Aventura</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* variables de diseño premium */
+    :root {
+      --color-brand: #d97706; /* Ámbar tierra */
+      --color-brand-light: #f59e0b;
+      --color-brand-dark: #b45309;
+      --color-accent: #0f766e; /* Azul místico andino */
+      --color-text-primary: #0f172a;
+      --color-text-secondary: #475569;
+      --color-bg-base: #fafaf9; /* Arena suave */
+      --color-bg-card: #ffffff;
+      --color-bg-dark: #0f172a;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+    }
+
+    /* Reset global */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-bg-base);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Tipografía */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* Utilidades de animación */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      background: rgba(250, 250, 249, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .navbar.scrolled {
+      background: rgba(250, 250, 249, 0.95);
+      box-shadow: var(--shadow-sm);
+      padding: 0.8rem 2rem;
+    }
+
+    .navbar-brand {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--color-bg-base);
+      text-decoration: none;
+      letter-spacing: 2px;
+      transition: color 0.3s;
+    }
+
+    .navbar.scrolled .navbar-brand {
+      color: var(--color-text-primary);
+    }
+
+    .navbar-menu {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .navbar-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-bg-base);
+      text-decoration: none;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    .navbar.scrolled .navbar-link {
+      color: var(--color-text-secondary);
+    }
+
+    .navbar.scrolled .navbar-link:hover {
+      color: var(--color-brand);
+    }
+
+    .navbar-cta {
+      background-color: var(--color-brand);
+      color: white;
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .navbar-cta:hover {
+      background-color: var(--color-brand-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Burger Menu para Móvil */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+    }
+
+    .burger span {
+      width: 25px;
+      height: 2px;
+      background-color: var(--color-bg-base);
+      transition: all 0.3s;
+    }
+
+    .navbar.scrolled .burger span {
+      background-color: var(--color-text-primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 95vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      background-image: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.7)), 
+                        url('https://image.pollinations.ai/prompt/majestic%20andes%20mountains%20peaks%20bolivia%20cordillera%20real%20epic%20landscape%20climbing%20golden%20hour?width=1600&height=900&nologo=true');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding: 0 1.5rem;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background-color: var(--color-brand);
+      color: white;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-brand-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Secciones de Contenido */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4.5rem auto;
+    }
+
+    .section-tag {
+      color: var(--color-brand);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--color-text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--color-text-secondary);
+      font-size: 1.1rem;
+    }
+
+    /* Layouts Alternos */
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 5rem;
+    }
+
+    .split-layout.reverse {
+      direction: rtl;
+    }
+
+    .split-layout.reverse .split-content {
+      direction: ltr;
+    }
+
+    .split-image-container {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .split-image {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .split-image:hover {
+      transform: scale(1.03);
+    }
+
+    .split-content h3 {
+      font-size: 2.2rem;
+      margin-bottom: 1.25rem;
+      color: var(--color-text-primary);
+    }
+
+    .split-content p {
+      color: var(--color-text-secondary);
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* Grid de Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .card {
+      background-color: var(--color-bg-card);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.03);
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(217, 119, 6, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--color-brand);
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--color-text-primary);
+    }
+
+    .card-text {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Sección Hospedajes */
+    .hospedajes-section {
+      background-color: #f2f1ed;
+    }
+
+    .hospedajes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .hospedaje-card {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hospedaje-img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .hospedaje-body {
+      padding: 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hospedaje-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hospedaje-meta {
+      font-size: 0.85rem;
+      color: var(--color-brand);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hospedaje-price-list {
+      border-top: 1px solid #f1f5f9;
+      margin: 1rem 0;
+      padding-top: 1rem;
+    }
+
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-item span:first-child {
+      color: var(--color-text-secondary);
+    }
+
+    .price-item span:last-child {
+      font-weight: 700;
+      color: var(--color-text-primary);
+    }
+
+    .hospedaje-contacts {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px dashed #e2e8f0;
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* Galería */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      height: 250px;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      opacity: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-title {
+      color: white;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* Avisos de Seguridad */
+    .alert-box {
+      background-color: #fef2f2;
+      border-left: 4px solid #ef4444;
+      padding: 1.5rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 2rem 0;
+    }
+
+    .alert-title {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      color: #991b1b;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* CTA final */
+    .cta-final {
+      background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
+                  url('https://image.pollinations.ai/prompt/bolivian%20andes%20scenic%20climbing%20hiker%20camp%20under%20stars?width=1600&height=900&nologo=true');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 8rem 2rem;
+    }
+
+    .cta-final-content {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .cta-final h2 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-final p {
+      font-size: 1.15rem;
+      margin-bottom: 2.5rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--color-bg-dark);
+      color: rgba(255, 255, 255, 0.6);
+      padding: 4rem 2rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 3rem;
+    }
+
+    .footer-col h4 {
+      color: white;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-brand);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 2rem auto 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Adaptabilidad móvil */
+    @media (max-width: 900px) {
+      .split-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .split-layout.reverse {
+        direction: ltr;
+      }
+      .split-image {
+        height: 300px;
+      }
+      .navbar-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--color-bg-base);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        box-shadow: var(--shadow-lg);
+      }
+      .navbar-menu.active {
+        display: flex;
+      }
+      .navbar-link {
+        color: var(--color-text-primary) !important;
+        font-size: 1.1rem;
+        width: 100%;
+        text-align: center;
+      }
+      .navbar-cta {
+        width: 100%;
+        text-align: center;
+      }
+      .burger {
+        display: flex;
+      }
+      .navbar:not(.scrolled) .burger span {
+        background-color: white;
+      }
+      .navbar.scrolled .burger span {
+        background-color: var(--color-text-primary);
+      }
+      section {
+        padding: 4rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <a class="navbar-brand" href="#">PEÑAS</a>
+    <button class="burger" id="burger" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="navbar-menu" id="navbarMenu">
+      <a class="navbar-link" data-target="#aventura">Aventura</a>
+      <a class="navbar-link" data-target="#escalada">Escalada</a>
+      <a class="navbar-link" data-target="#atracciones">Atractivos</a>
+      <a class="navbar-link" data-target="#hospedaje">Hospedaje</a>
+      <a class="navbar-link" data-target="#cafeteria">Cafetería</a>
+      <a href="https://whatsapp.com/channel/0029VbCc5uzH5JLyQmmCO91W" target="_blank" rel="noopener" class="navbar-cta">Unirse a WhatsApp</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <span class="section-tag" style="color: var(--color-brand-light); font-weight: 700;">Cordillera Real • Bolivia</span>
+      <h1 class="hero-title">Respira Aventura, Llénate de Vida</h1>
+      <p class="hero-subtitle">Descubre Peñas: el paraíso emergente de la escalada en roca y el andinismo, custodiado por imponentes glaciares andinos y cultura viva Aymara.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" data-target="#aventura">Explorar Actividades</a>
+        <a class="btn btn-secondary" data-target="#hospedaje">Ver Hospedajes</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Presentación / Recomendaciones -->
+  <section id="aventura">
+    <div class="section-header reveal">
+      <span class="section-tag">Bienvenido</span>
+      <h2 class="section-title">El Corazón Rocoso de los Andes</h2>
+      <p class="section-subtitle">A tan solo 60 km de La Paz, Peñas te recibe con un paisaje imponente de roca arenisca y una mística única.</p>
+    </div>
+
+    <!-- Split 1: Recomendaciones prácticas -->
+    <div class="split-layout reveal">
+      <div class="split-image-container">
+        <img class="split-image" loading="lazy" src="https://image.pollinations.ai/prompt/rustic%20bolivian%20village%20market%20with%20colorful%20fruits%20and%20vegetables%20sunny%20day?width=1600&height=900&nologo=true" alt="Mercado andino tradicional">
+      </div>
+      <div class="split-content">
+        <h3>Consejos para tu Viaje</h3>
+        <p>Peñas es un pueblo pequeño que conserva su autenticidad. Para disfrutar al máximo, te sugerimos abastecerte de alimentos frescos en la ciudad antes de llegar.</p>
+        <p><strong>Feria Local:</strong> Solo los sábados (6:00 AM - 12:00 PM) en la plaza principal encontrarás frutas, verduras y carnes.</p>
+        <p><strong>Agua:</strong> No hay agua potable corriente. Recuerda hervirla siempre antes de consumirla o llevar agua embotellada.</p>
+      </div>
+    </div>
+
+    <!-- Split 2: Parque de aventura -->
+    <div class="split-layout reverse reveal">
+      <div class="split-image-container">
+        <img class="split-image" loading="lazy" src="https://image.pollinations.ai/prompt/adventure%20park%20suspension%20bridges%20via%20ferrata%20high%20cliffs%20andes%20bolivia?width=1600&height=900&nologo=true" alt="Parque de Aventura Battistino Bonaldi">
+      </div>
+      <div class="split-content">
+        <h3>Parque de Aventura Battistino Bonaldi</h3>
+        <p>Un centro de actividades extremas único en Bolivia, diseñado bajo los más altos estándares internacionales de seguridad.</p>
+        <p>Atrévete a recorrer sus <strong>3 tirolesas de más de 100 metros</strong>, asciende por la emocionante <strong>Vía Ferrata</strong> o desafía tu equilibrio en puentes colgantes sobre el imponente cañón de roca.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Escalada en Roca -->
+  <section id="escalada" style="background-color: #fcfbf7; border-top: 1px solid #f2f1ed;">
+    <div class="section-header reveal">
+      <span class="section-tag">Roca Firme</span>
+      <h2 class="section-title">Escalada en Roca de Clase Mundial</h2>
+      <p class="section-subtitle">Peñas se consolida como el destino de escalada deportiva más dinámico de Bolivia con arenisca de altísima calidad.</p>
+    </div>
+
+    <div class="cards-grid reveal">
+      <div class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"></path></svg>
+        </div>
+        <h3 class="card-title">+150 Rutas</h3>
+        <p class="card-text">Explora 17 sectores perfectamente equipados, incluyendo zonas exclusivas para escalada de varios largos (multi-pitch) y escuela.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        </div>
+        <h3 class="card-titleAlquiler de Equipo">Alquiler de Equipo</h3>
+        <p class="card-text">¿No trajiste material? <strong>La Cordillera Experience</strong> ofrece renta de equipo de alta montaña y escalada. Reserva con anticipación.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <h3 class="card-title">Socorro Andino</h3>
+        <p class="card-text">Operado por guías de montaña de la AGMTB para rescate técnico. La prevención es clave; escala siempre dentro de tus límites.</p>
+      </div>
+    </div>
+
+    <div class="alert-box reveal">
+      <div class="alert-title">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"></path></svg>
+        AVISO IMPORTANTE: LA ESCALADA ES UNA ACTIVIDAD DE RIESGO
+      </div>
+      <p style="color: #7f1d1d; font-size: 0.95rem;">Cada escalador es totalmente responsable de poseer el conocimiento técnico necesario y utilizar equipo certificado (UIAA/CE). Si escalas de manera autónoma, informa siempre tu ruta prevista a tu hospedaje antes de salir.</p>
+    </div>
+  </section>
+
+  <!-- Atractivos Turísticos y Cultura -->
+  <section id="atracciones">
+    <div class="section-header reveal">
+      <span class="section-tag">Patrimonio Único</span>
+      <h2 class="section-title">Qué Ver y Hacer en Peñas</h2>
+      <p class="section-subtitle">Mucho más que deporte: sumérgete en la rica historia prehispánica, colonial y en las tradiciones locales.</p>
+    </div>
+
+    <div class="split-layout reveal">
+      <div class="split-image-container">
+        <img class="split-image" loading="lazy" src="https://image.pollinations.ai/prompt/ancient%20colonial%20church%20peñas%20bolivia%20plaza%20tupak%20katari%20historical?width=1600&height=900&nologo=true" alt="Iglesia de Peñas">
+      </div>
+      <div class="split-content">
+        <h3>Iglesia Nuestra Señora de la Natividad</h3>
+        <p>Construida en 1611, este templo mestizo es el corazón histórico del pueblo. En su plaza se llevó a cabo el histórico juicio y ejecución del líder indígena <strong>Túpac Katari</strong> en 1781.</p>
+        <p>Admira su imponente altar mayor de estilo barroco mestizo tallado en madera y decorado con pan de oro, además de valiosos lienzos coloniales.</p>
+      </div>
+    </div>
+
+    <div class="split-layout reverse reveal">
+      <div class="split-image-container">
+        <img class="split-image" loading="lazy" src="https://image.pollinations.ai/prompt/prehistoric%20cave%20paintings%20red%20and%20white%20figures%20on%20ancient%20rock%20bolivia?width=1600&height=900&nologo=true" alt="Pinturas Rupestres de Qillqantiji">
+      </div>
+      <div class="split-content">
+        <h3>Pinturas Rupestres y Senderismo</h3>
+        <p>Descubre el parque arqueológico de <strong>Qillqantiji</strong>, un complejo que resguarda misteriosas figuras humanas y zoomorfas de origen prehispánico y colonial pintadas en abrigos rocosos.</p>
+        <p><strong>Nota:</strong> Solo es posible acceder a las cuevas de Qillqantiji acompañados por un guía local de la comunidad.</p>
+      </div>
+    </div>
+
+    <!-- Grid de Sabores locales -->
+    <div class="cards-grid reveal" style="margin-top: 4rem;">
+      <div class="card">
+        <h3 class="card-title">Queso Criollo Tradicional</h3>
+        <p class="card-text">Elaborado artesanalmente con leche 100% de vaca que pasta a casi 4,000 msnm. Esto le otorga una densidad y un sabor concentrado y ligeramente salado inigualable.</p>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Licor de K'oa</h3>
+        <p class="card-text">La K'oa es una planta sagrada y resinosa del altiplano. Este licor espirituoso macerado ofrece un sabor robusto, herbáceo y refrescante, ideal como digestivo.</p>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Ruta de los Murales</h3>
+        <p class="card-text">Recorre el pueblo y déjate sorprender por una galería al aire libre de 22 murales artísticos que retratan la cosmovisión, flora, fauna e historia de Peñas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hospedajes -->
+  <section id="hospedaje" class="hospedajes-section" style="max-width: 100%; width: 100%;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="section-header reveal">
+        <span class="section-tag">Hospedaje</span>
+        <h2 class="section-title">Dónde Hospedarte</h2>
+        <p class="section-subtitle">Alojamientos gestionados por familias locales que garantizan una cálida hospitalidad andina y servicios para deportistas.</p>
+      </div>
+
+      <div class="hospedajes-grid reveal">
+        <!-- Qala Panqara -->
+        <div class="hospedaje-card">
+          <img class="hospedaje-img" loading="lazy" src="https://image.pollinations.ai/prompt/cozy%20eco%20lodge%20hotel%20interior%20mountain%20views%20warm%20lights?width=1600&height=900&nologo=true" alt="Qala Panqara">
+          <div class="hospedaje-body">
+            <span class="hospedaje-meta">Hotel Boutique</span>
+            <h3 class="hospedaje-title">Qala Panqara</h3>
+            <p class="card-text" style="margin-bottom: 1rem;">Habitaciones con baño privado, agua caliente, calefacción y uso libre de instalaciones premium. Vista panorámica alucinante.</p>
+            <div class="hospedaje-price-list">
+              <div class="price-item"><span>Hab. Simple (con desayuno)</span><span>200 Bs</span></div>
+              <div class="price-item"><span>Hab. Matrimonial (con desayuno)</span><span>300 Bs</span></div>
+              <div class="price-item"><span>Hab. Familiar 4 Pax</span><span>500 Bs</span></div>
+            </div>
+            <div class="hospedaje-contacts">
+              <p><strong>WhatsApp:</strong> +591 72058708</p>
+              <p><strong>Email:</strong> qalapanqarahotel@gmail.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Casona Don Ranulfo -->
+        <div class="hospedaje-card">
+          <img class="hospedaje-img" loading="lazy" src="https://image.pollinations.ai/prompt/rustic%20colonial%20house%20hostel%20backpacker%20common%20area%20wood?width=1600&height=900&nologo=true" alt="Casona Don Ranulfo">
+          <div class="hospedaje-body">
+            <span class="hospedaje-meta">Albergue & Camping</span>
+            <h3 class="hospedaje-title">Casona Don Ranulfo</h3>
+            <p class="card-text" style="margin-bottom: 1rem;">Ubicado en la plaza principal. Cuenta con cocina equipada, duchas calientes, zona de fogatas, coctelería y acepta tarjetas de crédito.</p>
+            <div class="hospedaje-price-list">
+              <div class="price-item"><span>Habitación Compartida (p/p)</span><span>70 Bs</span></div>
+              <div class="price-item"><span>Habitación Matrimonial privada</span><span>200 Bs</span></div>
+              <div class="price-item"><span>Zona de Camping (p/p)</span><span>20 Bs</span></div>
+            </div>
+            <div class="hospedaje-contacts">
+              <p><strong>WhatsApp:</strong> +591 69711917</p>
+              <p><strong>Ubicación:</strong> Calle Natividad #449</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ancohuma -->
+        <div class="hospedaje-card">
+          <img class="hospedaje-img" loading="lazy" src="https://image.pollinations.ai/prompt/cozy%20climbers%20hostel%20mountain%20gear%20shared%20kitchen%20bolivia?width=1600&height=900&nologo=true" alt="Ancohuma">
+          <div class="hospedaje-body">
+            <span class="hospedaje-meta">Refugio de Escaladores</span>
+            <h3 class="hospedaje-title">Ancohuma</h3>
+            <p class="card-text" style="margin-bottom: 1rem;">La base perfecta para escaladores y senderistas. Ofrecen guías certificados, logística de montaña y deliciosa comida casera a pedido.</p>
+            <div class="hospedaje-price-list">
+              <div class="price-item"><span>Habitación Compartida (p/p)</span><span>70 Bs</span></div>
+              <div class="price-item"><span>Habitación Matrimonial privada</span><span>200 Bs</span></div>
+              <div class="price-item"><span>Desayuno Completo</span><span>20 Bs</span></div>
+            </div>
+            <div class="hospedaje-contacts">
+              <p><strong>WhatsApp:</strong> +591 63258715</p>
+              <p><strong>Ubicación:</strong> Plaza Tupak Katari</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cafetería Virgen de la Natividad -->
+  <section id="cafeteria">
+    <div class="split-layout reveal">
+      <div class="split-image-container">
+        <img class="split-image" loading="lazy" src="https://image.pollinations.ai/prompt/cozy%20andean%20coffee%20shop%20warm%20atmosphere%20steaming%20coffee%20tasty%20pizzas?width=1600&height=900&nologo=true" alt="Cafetería Virgen de la Natividad">
+      </div>
+      <div class="split-content">
+        <span class="section-tag">Punto de Encuentro</span>
+        <h3>Cafetería Virgen de la Natividad</h3>
+        <p>Mucho más que una cafetería: es el centro logístico y cultural de los viajeros en Peñas. Un rincón acogedor donde disfrutar de repostería casera, pizzas y cafés especiales.</p>
+        <p><strong>Qué probar:</strong> Tiramisú artesanal, empanadas recién horneadas, hamburguesas vegetarianas o un chocolate caliente especial con chantilly tras un largo día en la roca.</p>
+        <p><strong>Horario de Temporada Alta (Mayo - Octubre):</strong> Todos los días de 08:00 a 19:00.</p>
+        <a href="tel:+59172588430" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.9rem; margin-top: 1rem;">Reservar Comidas: +591 72588430</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA de Cierre -->
+  <section class="cta-final" style="max-width: 100%; width: 100%;">
+    <div class="cta-final-content reveal">
+      <h2>¿Listo para conquistar las alturas de Peñas?</h2>
+      <p>Únete a nuestra comunidad activa de WhatsApp para coordinar transportes, conocer el clima en tiempo real, organizar cordadas de escalada y enterarte de todos los eventos del sector.</p>
+      <a href="https://whatsapp.com/channel/0029VbCc5uzH5JLyQmmCO91W" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.2rem 2.5rem;">Unirse al Canal Oficial</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4 style="font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 1px; color: var(--color-brand-light);">PEÑAS</h4>
+        <p style="margin-top: 1rem; font-size: 0.85rem; line-height: 1.5;">El destino definitivo para la escalada deportiva y el turismo comunitario en la Cordillera Real de Bolivia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces Útiles</h4>
+        <ul class="footer-links">
+          <li><a href="https://form.jotform.com/leonelguzmanc/cuestionario-a-turistas-y-excursion" target="_blank" rel="noopener">Ayúdanos a mejorar (Encuesta)</a></li>
+          <li><a href="http://www.lacordilleraexperience.org/" target="_blank" rel="noopener">La Cordillera Experience</a></li>
+          <li><a href="https://siarb-bolivia.org/penas-la-paz/" target="_blank" rel="noopener">Investigación SIARB (Arte Rupestre)</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contactos de Emergencia</h4>
+        <ul class="footer-links" style="font-size: 0.85rem;">
+          <li>Socorro Andino: 72061471 / 72514357</li>
+          <li>Radio Frecuencia UHF: 458.150</li>
+          <li>Radio Frecuencia VHF: 161.300</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Destino Turístico Peñas. Todos los derechos reservados. Desarrollado para el fomento del turismo sostenible.</p>
+    </div>
+  </footer>
+
+  <script>
+    // JS para controlar el comportamiento del Navbar al hacer scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Menú móvil (Burger)
+    const burger = document.getElementById('burger');
+    const navbarMenu = document.getElementById('navbarMenu');
+    burger.addEventListener('click', () => {
+      navbarMenu.classList.toggle('active');
+    });
+
+    // Navegación suave por Javascript para evitar errores locales de anclas
+    const links = document.querySelectorAll('[data-target]');
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('data-target');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          // Cerrar menú móvil si está abierto
+          navbarMenu.classList.remove('active');
+          
+          const offsetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Revelar elementos al hacer scroll (Intersection Observer)
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    revealElements.forEach(element => {
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>
