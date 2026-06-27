@@ -1,0 +1,90 @@
+<div class="page">
+  <header class="hero">
+    <h1>PDF2Landing</h1>
+    <p class="tagline">
+      Convierte tu folleto PDF en una <strong>landing page profesional</strong> en segundos.
+    </p>
+    <p class="subtagline">
+      Sube el PDF que ya tienes — sin escribir nada — y deja que la IA haga el resto.
+    </p>
+  </header>
+
+  <main class="layout">
+    <!-- Columna de entrada -->
+    <section class="col input-col">
+      @if (phase() === 'idle' || phase() === 'error') {
+        <app-dropzone (fileSelected)="onFile($event)" />
+      }
+
+      @if (busy()) {
+        <div class="card status">
+          <div class="spinner"></div>
+          <div>
+            <p class="status-text">{{ statusText() }}</p>
+            <p class="status-file">{{ fileName() }}</p>
+          </div>
+        </div>
+      }
+
+      @if (phase() === 'error') {
+        <div class="card error-box">⚠️ {{ errorMsg() }}</div>
+      }
+
+      @if (stats(); as s) {
+        <app-stats-panel [stats]="s" />
+      }
+
+      @if (markdown()) {
+        <div class="card md-card">
+          <button class="md-toggle" (click)="showMarkdown.set(!showMarkdown())">
+            {{ showMarkdown() ? '▾' : '▸' }} Markdown extraído
+          </button>
+          @if (showMarkdown()) {
+            <pre class="md-view">{{ markdown() }}</pre>
+          }
+        </div>
+      }
+    </section>
+
+    <!-- Columna de resultado -->
+    <section class="col result-col">
+      @if (phase() === 'done') {
+        @switch (publishState()) {
+          @case ('publishing') {
+            <div class="card publish publishing">
+              <div class="spinner small"></div>
+              <span>Publicando tu landing en la nube…</span>
+            </div>
+          }
+          @case ('published') {
+            <div class="card publish published">
+              <span class="pub-label">🚀 ¡En vivo!</span>
+              <a [href]="liveUrl()" target="_blank" rel="noopener" class="pub-link">{{ liveUrl() }}</a>
+              <span class="pub-note">Puede tardar ~1 min en quedar disponible la primera vez.</span>
+            </div>
+          }
+          @case ('failed') {
+            <div class="card publish failed">
+              <span>⚠️ No se pudo publicar: {{ publishMsg() }}</span>
+              <button class="retry" (click)="republish()">Reintentar</button>
+            </div>
+          }
+        }
+
+        <app-result-actions [html]="html()" />
+        <app-preview [html]="html()" />
+        <button class="restart" (click)="startOver()">↺ Convertir otro PDF</button>
+      } @else {
+        <div class="card placeholder">
+          <div class="ph-icon">🌐</div>
+          <p>Tu landing page aparecerá aquí.</p>
+          <span>Sube un PDF y míralo cobrar vida — se publica solo en la nube.</span>
+        </div>
+      }
+    </section>
+  </main>
+
+  <footer class="foot">
+    PDF2Landing · Hackathon GDG La Paz — Build with AI 2026 · hecho con Angular + Gemini
+  </footer>
+</div>
