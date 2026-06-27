@@ -14,11 +14,10 @@ import { Component, ElementRef, output, signal, viewChild } from '@angular/core'
     >
       <input #fileInputEl type="file" accept="application/pdf,.pdf" hidden
              (change)="onSelect($event)" />
-      <div class="icon">📄→🌐</div>
       <p class="title">Arrastra tu PDF aquí</p>
       <p class="sub">o haz clic para seleccionarlo · solo PDF con texto</p>
       @if (error()) {
-        <p class="err">⚠️ {{ error() }}</p>
+        <p class="err">Error: {{ error() }}</p>
       }
     </div>
   `,
