@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build with AI La Paz 2026 — Hackathon de Inteligencia Artificial</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Colors */
+      --brand: #4285F4;
+      --brand-gradient: linear-gradient(135deg, #4285F4 0%, #34A853 50%, #FBBC05 100%);
+      --accent: #34A853;
+      --bg-dark: #07090e;
+      --bg-card: #121620;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: rgba(255, 255, 255, 0.08);
+      
+      /* Fonts */
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      
+      /* Layout & Shadows */
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Base Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: auto; /* Handled smoothly by JS */
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+    }
+
+    body {
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Utility Layouts */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-padding {
+      padding: 7rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .section-padding {
+        padding: 4rem 0;
+      }
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    .gradient-text {
+      background: var(--brand-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .text-center { text-align: center; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 32px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--brand);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(66, 133, 244, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(66, 133, 244, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: var(--transition);
+      border-bottom: 1px solid transparent;
+    }
+
+    .navbar-scrolled {
+      background: rgba(7, 9, 14, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--brand);
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 95vh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+      filter: grayscale(30%) contrast(110%);
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 20%, var(--bg-dark) 80%),
+                  linear-gradient(to bottom, transparent, var(--bg-dark));
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-tag .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+
+    /* Grid & Cards (Alternating & Layouts) */
+    .section-title-wrapper {
+      max-width: 600px;
+      margin: 0 auto 4rem auto;
+    }
+
+    .section-title-wrapper p {
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    .img-wrapper {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-premium);
+    }
+
+    .img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .img-wrapper:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Tech Stack / Grid Icons */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .tech-pill {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .tech-pill:hover {
+      background: rgba(66, 133, 244, 0.1);
+      border-color: var(--brand);
+      transform: translateY(-2px);
+    }
+
+    /* Cards Grid (Criteria / Areas) */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 32px;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: var(--shadow-premium);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: var(--brand);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      opacity: 0.3;
+    }
+
+    /* Prizes Section */
+    .prizes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .prizes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .prize-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .prize-card.gold {
+      border-color: rgba(251, 188, 5, 0.3);
+      background: linear-gradient(180deg, rgba(251, 188, 5, 0.08) 0%, transparent 100%);
+    }
+
+    .prize-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .prize-rank {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .prize-amount {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      position: relative;
+      background: linear-gradient(135deg, #0d121f 0%, #07090e 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: var(--brand);
+      filter: blur(150px);
+      opacity: 0.15;
+      top: -50px;
+      right: -50px;
+    }
+
+    .cta-wrapper {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-wrapper h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+    footer {
+      background: #040508;
+      padding: 48px 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* Animation Utilities */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="logo">
+        <span class="logo-dot"></span>
+        Build with AI La Paz
+      </a>
+      <div class="nav-links">
+        <a href="#sobre-la-hackathon" class="nav-link">Evento</a>
+        <a href="#tematicas" class="nav-link">Temáticas</a>
+        <a href="#evaluacion" class="nav-link">Evaluación</a>
+        <a href="#premios" class="nav-link">Premios</a>
+      </div>
+      <a href="#registro" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.85rem;">Registrarse</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-bg">
+      <img src="https://image.pollinations.ai/prompt/futuristic%20digital%20landscape%20of%20La%20Paz%20Bolivia%20with%20cyberpunk%20illumination%20and%20neural%20networks%20connecting%20the%20city%20at%20night%20highly%20detailed%20cinematic?width=1600&height=900&nologo=true" alt="La Paz Inteligencia Artificial" loading="eager">
+    </div>
+    <div class="container text-center">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="dot"></span>
+          26 y 27 de Junio, 2026 • Híbrido
+        </div>
+        <h1>Construye con IA el futuro de <span class="gradient-text">Bolivia</span></h1>
+        <p>Únete a la hackathon líder y desarrolla soluciones tecnológicas de alto impacto para resolver los desafíos reales de nuestro país.</p>
+        <div class="hero-actions">
+          <a href="#registro" class="btn btn-primary">Participar del Reto</a>
+          <a href="#sobre-la-hackathon" class="btn btn-secondary">Conocer más</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section: Sobre la Hackathon -->
+  <section id="sobre-la-hackathon" class="section-padding reveal">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <div class="hero-tag" style="margin-bottom: 16px;">
+            <span class="dot" style="background: var(--brand);"></span>
+            GDG & WTM La Paz
+          </div>
+          <h2 style="font-size: 2.5rem; margin-bottom: 24px;">Creando impacto real a través de la IA</h2>
+          <p style="color: var(--text-muted); margin-bottom: 24px;">
+            <strong>Build with AI La Paz</strong> es una iniciativa híbrida diseñada para empoderar a creadores, desarrolladores y mentes creativas de Bolivia. Diseña, prototipa y presenta soluciones funcionales utilizando tecnología de punta.
+          </p>
+          <div style="display: flex; gap: 24px; margin-bottom: 32px;">
+            <div>
+              <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Formato Híbrido</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Virtual para todo el país, presencial opcional en La Paz.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Sede de Finales</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Biblioteca Municipal de La Paz, Paseo de El Prado.</p>
+            </div>
+          </div>
+        </div>
+        <div class="img-wrapper">
+          <img src="https://image.pollinations.ai/prompt/collaborative%20tech%20hackathon%20with%20young%20bolivian%20developers%20working%20on%20laptops%20with%20futuristic%20AI%20interfaces%20warm%20lighting?width=1600&height=900&nologo=true" alt="Hackathon de Inteligencia Artificial" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Temáticas -->
+  <section id="tematicas" class="section-padding reveal" style="background: rgba(255, 255, 255, 0.02);">
+    <div class="container">
+      <div class="section-title-wrapper text-center">
+        <h2>Áreas de Enfoque</h2>
+        <p>Selecciona un reto con potencial real de transformación social y tecnológica.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+          </div>
+          <h3>Educación y Cultura</h3>
+          <p>Sistemas de aprendizaje personalizados, accesibilidad y preservación de nuestra identidad.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <h3>Salud e Inclusión</h3>
+          <p>Diagnósticos ágiles, soporte de telemedicina y democratización de servicios vitales.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l-.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          </div>
+          <h3>Medio Ambiente y Turismo</h3>
+          <p>Monitoreo climático, conservación y experiencias inteligentes para visitantes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Tecnologías -->
+  <section class="section-padding reveal">
+    <div class="container">
+      <div class="grid-2">
+        <div class="img-wrapper">
+          <img src="https://image.pollinations.ai/prompt/futuristic%20abstract%20representation%20of%20Google%20Gemini%20artificial%20intelligence%20deep%20learning%20neural%20networks%20glowing%20blue%20and%20green%20lights?width=1600&height=900&nologo=true" alt="Ecosistema de Google AI" loading="lazy">
+        </div>
+        <div>
+          <h2 style="font-size: 2.5rem; margin-bottom: 24px;">Ecosistema Tecnológico</h2>
+          <p style="color: var(--text-muted); margin-bottom: 24px;">
+            Potencia tu proyecto utilizando las herramientas de Inteligencia Artificial y desarrollo más avanzadas del mercado. Se recomienda fuertemente el uso de tecnologías de Google para maximizar la escalabilidad.
+          </p>
+          <div class="tech-grid">
+            <div class="tech-pill">Gemini API</div>
+            <div class="tech-pill">Vertex AI</div>
+            <div class="tech-pill">Google AI Studio</div>
+            <div class="tech-pill">Gemma Models</div>
+            <div class="tech-pill">Firebase</div>
+            <div class="tech-pill">Flutter / FlutterFlow</div>
+            <div class="tech-pill">Google Cloud</div>
+            <div class="tech-pill">BigQuery</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Evaluación -->
+  <section id="evaluacion" class="section-padding reveal" style="background: rgba(255, 255, 255, 0.02);">
+    <div class="container">
+      <div class="section-title-wrapper text-center">
+        <h2>Criterios de Evaluación</h2>
+        <p>Tu proyecto será calificado sobre un total de 100 puntos por un jurado de expertos.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-badge">25%</div>
+          <h3>Impacto y Relevancia</h3>
+          <p>¿Resuelve una necesidad real en Bolivia? Analizamos el potencial de adopción y la creación de valor tangible.</p>
+        </div>
+        <div class="card">
+          <div class="card-badge">25%</div>
+          <h3>Implementación Técnica</h3>
+          <p>Evaluación de la calidad del código, robustez de la solución y la integración fluida de las tecnologías seleccionadas.</p>
+        </div>
+        <div class="card">
+          <div class="card-badge">20%</div>
+          <h3>Innovación</h3>
+          <p>Buscamos originalidad, creatividad en el uso de modelos y una clara diferenciación frente a lo que ya existe.</p>
+        </div>
+        <div class="card">
+          <div class="card-badge">15%</div>
+          <h3>Uso de Inteligencia Artificial</h3>
+          <p>Medimos la integración real y efectiva de modelos para aportar un valor agregado indiscutible a la propuesta.</p>
+        </div>
+        <div class="card">
+          <div class="card-badge">15%</div>
+          <h3>Pitch y Demostración</h3>
+          <p>Dispondrás de 3 minutos para convencer al jurado. Debes demostrar claridad, buena comunicación y un demo impecable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Premios -->
+  <section id="premios" class="section-padding reveal">
+    <div class="container">
+      <div class="section-title-wrapper text-center">
+        <h2>Premios y Reconocimientos</h2>
+        <p>Recompensamos el talento y el esfuerzo de los equipos con soluciones más viables.</p>
+      </div>
+      <div class="prizes-grid">
+        <div class="prize-card" style="order: 2;">
+          <div class="prize-rank">Segundo Lugar</div>
+          <div class="prize-amount">Bs. 800</div>
+          <p style="color: var(--text-muted);">Reconocimiento oficial y mentoría de seguimiento.</p>
+        </div>
+        <div class="prize-card gold" style="order: 1;">
+          <div class="prize-rank" style="color: #FBBC05;">🥇 Primer Lugar</div>
+          <div class="prize-amount" style="color: #FBBC05;">Bs. 1000</div>
+          <p style="color: var(--text-muted);">Premio mayor, certificado destacado y difusión nacional.</p>
+        </div>
+        <div class="prize-card" style="order: 3;">
+          <div class="prize-rank">Tercer Lugar</div>
+          <div class="prize-amount">Bs. 500</div>
+          <p style="color: var(--text-muted);">Certificado oficial y kit de patrocinadores.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section id="registro" class="cta-section section-padding reveal text-center">
+    <div class="container">
+      <div class="cta-wrapper">
+        <h2>¿Listo para marcar la diferencia?</h2>
+        <p style="color: var(--text-muted); margin-bottom: 32px; font-size: 1.15rem;">
+          Las inscripciones para Build with AI La Paz 2026 ya están abiertas. Únete a programadores, diseñadores y pensadores de todo el país.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary" onclick="alert('¡Inscripciones próximamente abiertas!'); return false;">Registrar mi Equipo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <span style="font-family: var(--font-display); font-weight: 700; color: #fff;">Build with AI La Paz</span>
+          <p style="font-size: 0.8rem; margin-top: 4px;">Organizado por Google Developer Groups & Women Techmakers La Paz.</p>
+        </div>
+        <div style="font-size: 0.85rem;">
+          © 2026 • Diseñado para el progreso tecnológico de Bolivia.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Smooth Scrolling with prevention of URL hash issues locally
+    document.querySelectorAll('.navbar a, .hero-actions a, .btn-secondary').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId.startsWith('#')) {
+          e.preventDefault();
+          const targetSection = document.querySelector(targetId);
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+      }
+    });
+
+    // Reveal elements on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      reveals.forEach(reveal => {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveal.getBoundingClientRect().top;
+        const elementVisible = 100; // threshold
+
+        if (elementTop < windowHeight - elementVisible) {
+          reveal.classList.add('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', revealOnScroll);
+    // Initial check
+    revealOnScroll();
+  </script>
+</body>
+</html>
